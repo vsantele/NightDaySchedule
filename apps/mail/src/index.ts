@@ -2,8 +2,8 @@ import dotenv from "dotenv";
 import type { Box } from "imap";
 import { simpleParser } from "mailparser";
 
-import { imap } from "./imap";
-import { processMail } from "./process";
+import { imap } from "./imap.js";
+import { processMail } from "./process.js";
 dotenv.config();
 
 function openInbox(cb: (err: Error, box: Box) => void) {

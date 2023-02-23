@@ -26,5 +26,6 @@
     "imap": "^0.8.19",
     "mailparser": "^3.6.3"
   },
-  "private": true
+  "private": true,
+  "type": "module"
 }

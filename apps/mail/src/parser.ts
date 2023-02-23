@@ -1,5 +1,5 @@
 import { ParsedMail } from "mailparser";
-import Schedule from "./model/schedule";
+import Schedule from "./model/schedule.js";
 
 const scheduleExtracted = (text: string) => {
 	const lines = text.split("\n");

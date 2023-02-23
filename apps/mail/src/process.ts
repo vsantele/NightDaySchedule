@@ -1,7 +1,7 @@
 import { ParsedMail } from "mailparser";
-import { validMail } from "./filter";
-import { fromEmail, schedule } from "./parser";
-import { prisma } from "./prisma";
+import { validMail } from "./filter.js";
+import { fromEmail, schedule } from "./parser.js";
+import { prisma } from "./prisma.js";
 
 async function processMail(email: ParsedMail) {
 	if (!validMail(email) || email.text === undefined) {
