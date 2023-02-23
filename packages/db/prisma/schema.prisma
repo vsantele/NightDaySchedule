@@ -11,11 +11,19 @@ datasource db {
 }
 
 model Schedule {
-  id        Int      @id @default(autoincrement())
+  emailAddress      String
+  date      DateTime
+  start     DateTime?
+  end       DateTime?
+  place     String?
+  state     State @default(WORK)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  date      DateTime
-  start     DateTime
-  end       DateTime
-  mail      String
+
+  @@id ([emailAddress, date])
+}
+
+enum State {
+  WORK
+  REST
 }
