@@ -1,0 +1,24 @@
+{
+  "name": "night_day_schedule",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "pnpm dotenv -- turbo run build",
+    "dev": "pnpm dotenv -- turbo run dev",
+    "lint": "turbo run lint"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "dotenv-cli": "^7.0.0",
+    "rome": "^11.0.0",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "packageManager": "pnpm@7.27.1"
+}

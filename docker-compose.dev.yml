@@ -1,0 +1,20 @@
+services:
+  db:
+    image: postgres:9.6
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+
+volumes:
+  db_data:

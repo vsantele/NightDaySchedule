@@ -1,0 +1,30 @@
+{
+  "name": "mail",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "dev": "nodemon --exec tsx src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/imap": "^0.8.35",
+    "@types/mailparser": "^3.4.0",
+    "@types/node": "^18.14.0",
+    "nodemon": "^2.0.20",
+    "tsx": "^3.12.3",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "db": "workspace:*",
+    "dotenv": "^16.0.3",
+    "imap": "^0.8.19",
+    "mailparser": "^3.6.3"
+  },
+  "private": true
+}
