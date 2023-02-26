@@ -1,33 +1,41 @@
+ARG PNPM_VERSION=7.27.1
 
 FROM node:18-alpine as base
-RUN wget -qO- https://get.pnpm.io/install.sh | ENV="~/.shrc" SHELL="$(which sh)" PNPM_VERSION=7.27.1 sh -
-WORKDIR /usr
+RUN apk add --no-cache libc6-compat && apk update
+RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store \
+    npm i --global --no-update-notifier --no-fund pnpm@${PNPM_VERSION} \
+    && pnpm fetch turbo
+WORKDIR /usr/app
 
 
 FROM base as builder
 
-COPY package.json pnpm-lock.yaml ./
+COPY . .
+RUN pnpm dlx turbo prune --scope=mail --docker
 
-COPY tsconfig.json ./
+FROM base as installer
 
-COPY src ./src
+COPY .gitignore .gitignore
+COPY turbo.json turbo.json
+COPY --from=builder /usr/app/out/json ./
+COPY --from=builder /usr/app/out/pnpm-lock.yaml /usr/app/out/pnpm-workspace.yaml ./
+RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store \
+    pnpm install --frozen-lockfile
+COPY --from=builder /usr/app/out/full ./
 
-RUN pnpm install
-RUN pnpm prisma generate
+ENV NODE_ENV production
+RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store \
+    pnpm dlx turbo run build --filter=mail
 
-RUN pnpm run build
+FROM installer as pruned
+RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store \
+    pnpm --filter mail --prod deploy ./pruned
 
+FROM base AS runner.
 
-## this is stage two , where the app actually runs
+ENV NODE_ENV production
 
-FROM base
-
-COPY package.json pnpm-lock.yaml ./
-
-RUN pnpm install --prod
-
-COPY --from=builder /usr/node_modules/.prisma /usr/node_modules/
-
-COPY --from=builder /usr/dist .
-
-CMD ["node","index.js"]
+COPY --from=pruned --chown=node:node /usr/app/pruned/dist dist
+COPY --from=pruned --chown=node:node /usr/app/pruned/node_modules node_modules
+USER node
+CMD ["node", "dist"]

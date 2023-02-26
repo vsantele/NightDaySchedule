@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsx src/index.ts",
+    "start": "node dist/index.js",
     "dev": "nodemon --exec tsx src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc -b"
   },
   "keywords": [],
   "author": "",
@@ -22,10 +22,8 @@
   },
   "dependencies": {
     "db": "workspace:*",
-    "dotenv": "^16.0.3",
     "imap": "^0.8.19",
     "mailparser": "^3.6.3"
   },
-  "private": true,
-  "type": "module"
+  "private": true
 }

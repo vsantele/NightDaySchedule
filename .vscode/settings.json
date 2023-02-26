@@ -2,5 +2,8 @@
   "editor.defaultFormatter": "rome.rome",
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
   }
 }
