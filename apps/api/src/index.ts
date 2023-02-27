@@ -4,7 +4,7 @@ import calendarRoutes from "./routes/calendar";
 type Environment = "development" | "production" | "test";
 
 const envToLogger: {
-	[K in Environment]: Object | boolean;
+	[K in Environment]: boolean | Object;
 } = {
 	development: {
 		transport: {
@@ -15,7 +15,10 @@ const envToLogger: {
 			},
 		},
 	},
-	production: true,
+	production: {
+		level: "info",
+		file: "/var/logs/api.log",
+	},
 	test: false,
 };
 

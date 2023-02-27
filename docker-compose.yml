@@ -18,6 +18,8 @@ services:
       - "5173:5173"
     env_file:
       - .env
+    volumes:
+      - api_logs:/var/logs/
     depends_on:
       db:
         condition: service_started
