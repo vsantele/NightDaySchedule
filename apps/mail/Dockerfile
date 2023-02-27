@@ -11,7 +11,7 @@ WORKDIR /usr/app
 FROM base as builder
 
 COPY . .
-RUN RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store \
+RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store \
     pnpm dlx turbo prune --scope=mail --docker
 
 FROM base as installer
