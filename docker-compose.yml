@@ -9,7 +9,7 @@ services:
       db:
         condition: service_started
       migrate:
-          condition: service_completed_successfully
+        condition: service_completed_successfully
   api:
     build:
       context: .
@@ -24,7 +24,7 @@ services:
       db:
         condition: service_started
       migrate:
-          condition: service_completed_successfully
+        condition: service_completed_successfully
   db:
     image: postgres:9.6
     env_file:
@@ -42,3 +42,4 @@ services:
 
 volumes:
   db_data:
+  api_logs:
