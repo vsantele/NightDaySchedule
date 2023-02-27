@@ -41,6 +41,6 @@ ENV NODE_ENV production
 COPY --from=pruned --chown=node:node /usr/app/pruned/dist dist
 COPY --from=pruned --chown=node:node /usr/app/pruned/node_modules node_modules
 
-EXPOSE 8081
+EXPOSE 5173
 USER node
 CMD ["node", "dist"]

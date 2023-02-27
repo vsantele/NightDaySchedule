@@ -14,6 +14,8 @@ services:
     build:
       context: .
       dockerfile: ./apps/api/Dockerfile
+    ports:
+      - "5173:5173"
     env_file:
       - .env
     depends_on:
