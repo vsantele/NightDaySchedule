@@ -1,6 +1,29 @@
 import fastify from "fastify";
 import calendarRoutes from "./routes/calendar";
-const server = fastify({ logger: true });
+
+type Environment = "development" | "production" | "test";
+
+const envToLogger: {
+	[K in Environment]: Object | boolean;
+} = {
+	development: {
+		transport: {
+			target: "pino-pretty",
+			options: {
+				translateTime: "HH:MM:ss Z",
+				ignore: "pid,hostname",
+			},
+		},
+	},
+	production: true,
+	test: false,
+};
+
+const environment = process.env.NODE_ENV ?? "development";
+
+const server = fastify({
+	logger: envToLogger[environment as Environment] ?? true,
+});
 
 server.register(calendarRoutes, { prefix: "/calendar" });
 
