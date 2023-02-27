@@ -34,13 +34,14 @@ async function routes(fastify: FastifyInstance, options: Object) {
 					return validationResult;
 				}
 				const date = new Date(request.query.from ?? new Date("2023-01-01"));
-				reply.type("text/caledar");
-				const schedule = await getSchedule(request.query.email, date);
-				if (schedule.length === 0) {
+				const schedules = await getSchedule(request.query.email, date);
+				if (schedules.length === 0) {
 					reply.status(404);
 					return { error: "User not found" };
 				}
-				return calendar(schedule);
+				const icalFile = calendar(schedules);
+				reply.type("text/calendar");
+				return icalFile;
 			} catch (error) {
 				reply.status(500);
 				return { error: "Internal Server Error" };
