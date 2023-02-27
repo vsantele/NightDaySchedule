@@ -23,7 +23,8 @@
   "dependencies": {
     "db": "workspace:*",
     "imap": "^0.8.19",
-    "mailparser": "^3.6.3"
+    "mailparser": "^3.6.3",
+    "tsconfig-custom": "workspace:*"
   },
   "private": true
 }

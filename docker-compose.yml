@@ -10,7 +10,17 @@ services:
         condition: service_started
       migrate:
           condition: service_completed_successfully
-
+  api:
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_started
+      migrate:
+          condition: service_completed_successfully
   db:
     image: postgres:9.6
     env_file:
