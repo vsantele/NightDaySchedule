@@ -2,6 +2,7 @@ import type { Box } from "imap";
 import { simpleParser } from "mailparser";
 
 import { imap } from "./imap.js";
+import logger from "./logger.js";
 import { processMail } from "./process.js";
 
 function openInbox(cb: (err: Error, box: Box) => void) {
@@ -9,7 +10,7 @@ function openInbox(cb: (err: Error, box: Box) => void) {
 }
 
 imap.once("ready", () => {
-	console.log("Ready");
+	logger.info("Ready");
 	openInbox(function (err, box) {
 		if (err) throw err;
 	});
@@ -30,7 +31,7 @@ imap.on("mail", (nbNewMail: number) => {
 			});
 
 			f.on("message", function (msg, seqno) {
-				console.log("Message #%d", seqno);
+				logger.info("Message #%d", seqno);
 				var prefix = `(#${seqno}) `;
 				msg.on("body", function (stream, info) {
 					var buffer = "";
@@ -43,25 +44,25 @@ imap.on("mail", (nbNewMail: number) => {
 					});
 				});
 				msg.once("end", function () {
-					console.log(`${prefix}Finished`);
+					logger.info(`${prefix}Finished`);
 				});
 			});
 			f.once("error", function (err) {
-				console.log(`Fetch error: ${err}`);
+				logger.error(`Fetch error: ${err}`);
 			});
 			f.once("end", function () {
-				console.log("Done fetching all messages!");
+				logger.info("Done fetching all messages!");
 			});
 		});
 	});
 });
 
 imap.once("error", function (err: Error) {
-	console.log(err);
+	logger.error(err);
 });
 
 imap.once("end", function () {
-	console.log("Connection ended");
+	logger.info("Connection ended");
 });
 
 imap.connect();
