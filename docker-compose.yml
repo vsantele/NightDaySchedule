@@ -19,7 +19,7 @@ services:
     env_file:
       - .env
     volumes:
-      - api_logs:/var/logs/
+      - logs:/var/logs/
     depends_on:
       db:
         condition: service_started
@@ -31,6 +31,7 @@ services:
       - .env
     volumes:
       - db_data:/var/lib/postgresql/data
+      - logs:/var/logs/
   migrate:
     build:
       context: .
@@ -42,4 +43,4 @@ services:
 
 volumes:
   db_data:
-  api_logs:
+  logs:
