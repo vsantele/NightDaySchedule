@@ -34,7 +34,7 @@ FROM installer as pruned
 RUN --mount=type=cache,id=pnpm-store,target=/root/.pnpm-store \
   pnpm --filter $APP_NAME --prod deploy ./pruned
 
-FROM base AS runner.
+FROM base AS runner
 
 ENV NODE_ENV production
 
