@@ -17,7 +17,7 @@ const envToLogger: {
 	},
 	production: {
 		level: "info",
-		file: "/var/logs/api.log",
+		file: "/var/logs/api/api.log",
 	},
 	test: false,
 };
