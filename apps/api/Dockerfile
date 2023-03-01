@@ -1,4 +1,4 @@
-ARG PNPM_VERSION=7.27.1
+ARG PNPM_VERSION=7.28.0
 ARG APP_NAME="api"
 
 FROM node:18-alpine as base

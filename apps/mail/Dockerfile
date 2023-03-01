@@ -1,4 +1,4 @@
-ARG PNPM_VERSION=7.27.1
+ARG PNPM_VERSION=7.28.0
 
 FROM node:18-alpine as base
 RUN apk add --no-cache libc6-compat && apk update
