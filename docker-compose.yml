@@ -1,5 +1,5 @@
 services:
-  app:
+  mail:
     build:
       context: .
       dockerfile: ./apps/mail/Dockerfile
