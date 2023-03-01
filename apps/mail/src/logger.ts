@@ -14,13 +14,6 @@ const consolePipeline = {
 const transport = pino.transport({
 	pipeline: isProd ? [filePipeline, consolePipeline] : [consolePipeline],
 });
-if (isProd) {
-	transport.targets.push({
-		level: "info",
-		target: "pino/file",
-		options: { destination: "/var/logs/mail/mail.log" },
-	});
-}
 
 const logger = pino(
 	{
