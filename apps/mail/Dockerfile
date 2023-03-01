@@ -36,6 +36,8 @@ FROM base AS runner
 
 ENV NODE_ENV production
 
+RUN mkdir -p /var/logs/mail && chown -R node:node /var/logs/mail
+
 COPY --from=pruned --chown=node:node /usr/app/pruned/dist dist
 COPY --from=pruned --chown=node:node /usr/app/pruned/node_modules node_modules
 USER node
