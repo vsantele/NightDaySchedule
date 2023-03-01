@@ -1,5 +1,6 @@
 import { ParsedMail } from "mailparser";
 import { validMail } from "./filter.js";
+import logger from "./logger.js";
 import { fromEmail, schedule } from "./parser.js";
 import { prisma } from "./prisma.js";
 
@@ -39,7 +40,7 @@ async function processMail(email: ParsedMail) {
 			});
 		}),
 	);
-	console.log(`Processed ${emailAddress}`);
+	logger.info(`Processed ${emailAddress}`);
 }
 
 export { processMail };
