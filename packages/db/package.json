@@ -1,5 +1,6 @@
 {
 	"name": "db",
+	"version": "1.0.0",
 	"scripts": {
 		"build": "tsc -b",
 		"clean": "rimraf .turbo node_modules dist",
