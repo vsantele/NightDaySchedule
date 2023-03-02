@@ -1,6 +1,10 @@
 import { insertPlaces } from "./db";
 import parser from "./parser";
 
+import getLogger from "logger";
+
+const logger = getLogger("place");
+
 async function main() {
 	const url = process.env.PLACE_ADDRESS;
 	if (url === undefined) {
@@ -12,12 +16,12 @@ async function main() {
 		const html = await res.text();
 		const nights = parser(html);
 		await insertPlaces(nights);
-		console.log(`Inserted ${nights.length} places`);
+		logger.info(`Inserted ${nights.length} places`);
 	} else {
 		throw new Error(`Failed to fetch: ${url}`);
 	}
 }
 
 main().catch((e) => {
-	console.error(e);
+	logger.error(e);
 });

@@ -46,25 +46,23 @@ importers:
       '@types/node': ^18.14.2
       db: workspace:*
       imap: ^0.8.19
+      logger: workspace:*
       mailparser: ^3.6.3
       nodemon: ^2.0.20
-      pino: ^8.11.0
-      pino-pretty: ^9.4.0
       tsconfig-custom: workspace:*
       tsx: ^3.12.3
       typescript: ^4.9.5
     dependencies:
       db: link:../../packages/db
       imap: 0.8.19
+      logger: link:../../packages/logger
       mailparser: 3.6.3
-      pino: 8.11.0
       tsconfig-custom: link:../../packages/tsconfig-config
     devDependencies:
       '@types/imap': 0.8.35
       '@types/mailparser': 3.4.0
       '@types/node': 18.14.2
       nodemon: 2.0.20
-      pino-pretty: 9.4.0
       tsx: 3.12.3
       typescript: 4.9.5
 
@@ -73,18 +71,18 @@ importers:
       '@types/node': ^18.14.2
       cheerio: 1.0.0-rc.12
       db: workspace:*
+      logger: workspace:*
       nodemon: ^2.0.20
-      pino-pretty: ^9.4.0
       tsconfig-custom: workspace:*
       tsx: ^3.12.3
       typescript: ^4.9.5
     dependencies:
       cheerio: 1.0.0-rc.12
       db: link:../../packages/db
+      logger: link:../../packages/logger
     devDependencies:
       '@types/node': 18.14.2
       nodemon: 2.0.20
-      pino-pretty: 9.4.0
       tsconfig-custom: link:../../packages/tsconfig-config
       tsx: 3.12.3
       typescript: 4.9.5
@@ -107,6 +105,23 @@ importers:
       rimraf: 4.1.2
       tsconfig-custom: link:../tsconfig-config
       tsup: 6.6.3_typescript@4.9.5
+      tsx: 3.12.3
+      typescript: 4.9.5
+
+  packages/logger:
+    specifiers:
+      '@types/node': ^18.14.2
+      pino: ^8.11.0
+      pino-pretty: ^9.4.0
+      tsconfig-custom: workspace:*
+      tsx: ^3.12.3
+      typescript: ^4.9.5
+    dependencies:
+      pino: 8.11.0
+    devDependencies:
+      '@types/node': 18.14.2
+      pino-pretty: 9.4.0
+      tsconfig-custom: link:../tsconfig-config
       tsx: 3.12.3
       typescript: 4.9.5
 

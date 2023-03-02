@@ -17,15 +17,14 @@
     "@types/mailparser": "^3.4.0",
     "@types/node": "^18.14.2",
     "nodemon": "^2.0.20",
-    "pino-pretty": "^9.4.0",
     "tsx": "^3.12.3",
     "typescript": "^4.9.5"
   },
   "dependencies": {
     "db": "workspace:*",
     "imap": "^0.8.19",
+    "logger": "workspace:*",
     "mailparser": "^3.6.3",
-    "pino": "^8.11.0",
     "tsconfig-custom": "workspace:*"
   },
   "private": true

@@ -1,0 +1,20 @@
+{
+	"name": "logger",
+	"version": "0.0.0",
+	"scripts": {
+		"build": "tsc -b",
+		"migrate": "prisma migrate deploy"
+	},
+	"dependencies": {
+		"pino": "^8.11.0"
+	},
+	"devDependencies": {
+		"@types/node": "^18.14.2",
+		"pino-pretty": "^9.4.0",
+		"tsconfig-custom": "workspace:*",
+		"tsx": "^3.12.3",
+		"typescript": "^4.9.5"
+	},
+	"main": "./dist/index.js",
+	"types": "./dist/index.d.ts"
+}
