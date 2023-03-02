@@ -11,17 +11,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Schedule {
-  emailAddress      String
-  date      DateTime
-  start     DateTime?
-  end       DateTime?
-  place     String?
-  state     State @default(WORK)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Place {
+  name     String     @id
+  address  String
+  Schedule Schedule[]
+}
 
-  @@id ([emailAddress, date])
+model Schedule {
+  emailAddress String
+  date         DateTime
+  start        DateTime?
+  end          DateTime?
+  place        Place?    @relation(fields: [placeName], references: [name])
+  placeName    String?   @map("place")
+  state        State     @default(WORK)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@id([emailAddress, date])
 }
 
 enum State {
