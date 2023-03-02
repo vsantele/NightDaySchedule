@@ -25,6 +25,19 @@ services:
         condition: service_started
       migrate:
         condition: service_completed_successfully
+  place:
+    build:
+      context: .
+      dockerfile: ./apps/place/Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - logs:/var/logs/
+    depends_on:
+      db:
+        condition: service_started
+      migrate:
+        condition: service_completed_successfully
   db:
     image: postgres:9.6
     env_file:
