@@ -1,5 +1,16 @@
 # mail
 
+## 1.3.0
+
+### Minor Changes
+
+- extract logger to package
+
+### Patch Changes
+
+- Updated dependencies
+  - logger@1.0.0
+
 ## 1.2.0
 
 ### Minor Changes
