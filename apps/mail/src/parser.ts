@@ -11,9 +11,10 @@ function schedule(text: string): Schedule[] {
 			const res = line.match(regex);
 			if (res === null) return null;
 
-			const [, day, dateStr, from, to, place] = res;
+			const [, day, dateStr, from, to, placeAll] = res;
 			const state = from === "Repos" ? "REST" : "WORK";
 			const date = convertDate(dateStr);
+			const place = placeAll.replace(/Night \d+\s/, "").trim();
 
 			if (state === "REST") {
 				return { day, date, start: null, end: null, place: null, state };

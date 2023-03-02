@@ -26,7 +26,7 @@ async function processMail(email: ParsedMail) {
 				update: {
 					start,
 					end,
-					place,
+					placeName: place,
 					state,
 				},
 				create: {
@@ -34,7 +34,7 @@ async function processMail(email: ParsedMail) {
 					date,
 					start,
 					end,
-					place,
+					placeName: place,
 					state,
 				},
 			});
