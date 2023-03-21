@@ -44,7 +44,8 @@ COPY --from=pruned --chown=node:node /usr/app/pruned/node_modules node_modules
 RUN which crond && \
   rm -rf /etc/periodic
 
-RUN echo "* * */10 * * cd /usr/app && node dist" > /var/spool/cron/crontabs/node
+# At 10:10, every 10 days
+RUN echo "10 10 */10 * * cd /usr/app && node dist" > /var/spool/cron/crontabs/node
 
 USER node
 CMD ["crond", "-f", "-l", "2"]
